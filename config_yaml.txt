@@ -1,0 +1,47 @@
+# 異常検知システム設定ファイル
+
+# 実行モード: svr_mahalanobis / svm_mahalanobis / mahalanobis_only
+mode: svr_mahalanobis
+
+# 入出力設定
+paths:
+  input_dir: ./input_data/
+  results_dir: ./results/
+  csv_output_dir: ./results/csv/
+  graph_output_dir: ./results/graphs/
+  log_dir: ./logs/
+
+# 対象カラム設定
+target_columns:
+  - column1
+  - column2
+  - column3
+
+# 異常検知閾値設定
+thresholds:
+  z_score: 3.0  # Zスコア閾値
+  mahalanobis_percentile: 95  # マハラノビス距離のパーセンタイル閾値
+
+# モデルパラメータ
+model_params:
+  svr:
+    kernel: rbf
+    C: 1.0
+    epsilon: 0.1
+    gamma: auto
+  svm:
+    kernel: rbf
+    C: 1.0
+    gamma: auto
+    nu: 0.1  # One-Class SVM用
+
+# プロット設定
+plot_settings:
+  figure_size: [12, 8]
+  dpi: 100
+  show_grid: true
+  
+# ログ設定
+logging:
+  level: INFO
+  format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
